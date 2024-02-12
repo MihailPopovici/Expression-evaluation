@@ -18,8 +18,9 @@ bool isFunction(string s) {
 }
 
 bool isNumber(string s) {
+    if (s.size() == 1 && !(s[0] >= '0' && s[0] <= '9')) return false;
     //can contain only digits, dots and minus sign on the first index
-    if (!(s[0] >= '0' && s[0] <= '9') && s[0] != '_') return false;
+    if (!(s[0] >= '0' && s[0] <= '9') && s[0] != '-') return false;
     for (int i = 1; i < s.size(); i++) {
         if (!(s[i] >= '0' && s[i] <= '9') && s[i] != '.') return false;
     }
@@ -34,7 +35,7 @@ bool isParenthesis(string s) {
 }
 
 bool isVariable(string s) {
-    return (!isNumber(s) && !isOperator(s) && !isParenthesis(s) && !isFunction(s));
+    return !(isNumber(s) || isOperator(s) || isParenthesis(s) || isFunction(s));
 }
 
 bool correctVariableName(string s) {
